@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Rapid Grab</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #12141a;
+      --card: #1e222c;
+      --border: #2a3040;
+      --text: #e7eaf2;
+      --muted: #8b93a7;
+      --accent: #5b8cff;
+      --accent-hover: #7ba3ff;
+      --success: #3ddc84;
+      --danger: #ff5c72;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      width: 340px;
+      background: var(--bg);
+      color: var(--text);
+      font: 13px/1.45 "Segoe UI", system-ui, sans-serif;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 14px 9px;
+    }
+    header img { width: 26px; height: 26px; }
+    header h1 { font-size: 15px; margin: 0; font-weight: 700; }
+    .status {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+    .dot.on { background: var(--success); }
+    .dot.off { background: var(--danger); }
+    main { padding: 0 14px 14px; }
+    .page {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 9px 11px;
+      margin-bottom: 10px;
+    }
+    .page .title { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .page .url { color: var(--muted); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      border-radius: 20px;
+      padding: 1px 7px;
+      margin-top: 5px;
+      background: rgba(91, 140, 255, .16);
+      color: var(--accent-hover);
+    }
+    .badge.unknown { background: rgba(139, 147, 167, .16); color: var(--muted); }
+    label { font-size: 11px; color: var(--muted); display: block; margin: 8px 0 3px; }
+    input, select {
+      width: 100%;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 6px 8px;
+      font: inherit;
+    }
+    input:focus, select:focus { outline: none; border-color: var(--accent); }
+    .row { display: flex; gap: 7px; }
+    .row > * { flex: 1; }
+    .actions { display: grid; gap: 7px; margin-top: 11px; }
+    button {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 7px 9px;
+      font: inherit;
+      cursor: pointer;
+    }
+    button:hover { border-color: var(--accent); }
+    button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+    button.primary:hover { background: var(--accent-hover); }
+    button:disabled { opacity: .55; cursor: default; }
+    .check { display: flex; align-items: center; gap: 7px; margin-top: 10px; color: var(--muted); font-size: 11px; cursor: pointer; }
+    .check input { width: auto; cursor: pointer; }
+    select { cursor: pointer; }
+    .message { min-height: 17px; margin-top: 9px; font-size: 11px; color: var(--muted); }
+    .message.error { color: var(--danger); }
+    .message.ok { color: var(--success); }
+    details { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 8px; }
+    summary { cursor: pointer; color: var(--muted); font-size: 11px; }
+    .hint { font-size: 11px; color: var(--muted); margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="icons/icon48.png" alt="" />
+    <h1>Rapid Grab</h1>
+    <div class="status"><span id="dot" class="dot"></span><span id="statusText">Checking...</span></div>
+  </header>
+  <main>
+    <div class="page">
+      <div class="title" id="pageTitle">Current page</div>
+      <div class="url" id="pageUrl"></div>
+      <span class="badge unknown" id="pageBadge">Checking...</span>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="quality">Video quality</label>
+        <select id="quality">
+          <option value="">Best available</option>
+          <option value="2160">Up to 2160p</option>
+          <option value="1440">Up to 1440p</option>
+          <option value="1080">Up to 1080p</option>
+          <option value="720">Up to 720p</option>
+          <option value="480">Up to 480p</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="openBtn">Choose format in Rapid Grab</button>
+      <div class="row">
+        <button id="videoBtn">Quick video</button>
+        <button id="audioBtn">Quick audio</button>
+      </div>
+    </div>
+
+    <label class="check" for="autoSend">
+      <input type="checkbox" id="autoSend" />
+      Auto-send detected videos
+    </label>
+
+    <div class="message" id="message"></div>
+
+    <details>
+      <summary>Connection settings</summary>
+      <label for="port">Local API port</label>
+      <input id="port" type="number" min="1024" max="65535" step="1" />
+      <label for="token">Pairing token</label>
+      <input id="token" type="text" spellcheck="false" autocomplete="off" />
+      <div class="row" style="margin-top:8px">
+        <button id="testBtn">Test connection</button>
+        <button id="saveBtn">Save</button>
+      </div>
+      <div class="hint">Find the port and token in Rapid Grab → Settings → Browser integration.</div>
+    </details>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

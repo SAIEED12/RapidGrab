@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+build/dist/
+dist/
+build/build/
+build/deno_bin/
+*.egg-info/
+.pytest_cache/
