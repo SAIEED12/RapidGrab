@@ -336,10 +336,14 @@ class MainWindow(QMainWindow):
 
     def _on_job_completed(self, job: dict) -> None:
         self._set_status(f"Finished: {job.get('title') or 'download'}")
-        if self.tray and self.settings.get("notify_on_finish"):
+        if self.settings.get("notify_on_finish"):
             title = str(job.get("title") or "Download complete")
-            self.tray.showMessage(
-                "Download complete", title[:120], QSystemTrayIcon.MessageIcon.Information, 4000
+            filepath = str(job.get("filepath") or "")
+            self.show_window()
+            QMessageBox.information(
+                self,
+                "Download complete",
+                f'"{title}"\n\nSaved to:\n{filepath}' if filepath else f'"{title}"',
             )
 
     # ------------------------------------------------------------------
