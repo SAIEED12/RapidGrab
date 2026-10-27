@@ -1,9 +1,9 @@
-# Rapid Grab
+# RapidGrab
 
 A fast, IDM-style desktop downloader for **video and audio**, built with Python,
 Qt (PySide6) and yt-dlp.
 
-Rapid Grab accepts links from YouTube, Facebook, X/Twitter, Instagram, TikTok,
+RapidGrab accepts links from YouTube, Facebook, X/Twitter, Instagram, TikTok,
 Vimeo, Twitch VODs, Reddit, SoundCloud, thousands of other sites — and plain
 direct media URLs. It lets you pick any available video quality or extract
 audio (MP3 / M4A / Opus), queue multiple downloads, pause/resume, browse a
@@ -33,7 +33,7 @@ extension.
   `cookies.txt` file for videos that require a signed-in session (including
   YouTube's "Sign in to confirm you're not a bot" check).
 - **JavaScript runtime aware** — modern YouTube extraction needs Deno, Node,
-  Bun or QuickJS. Rapid Grab auto-detects installed runtimes and packaged
+  Bun or QuickJS. RapidGrab auto-detects installed runtimes and packaged
   builds bundle Deno.
 - **Windows integration** — system tray, close-to-tray, completion
   notifications, single dark/light theme.
@@ -70,7 +70,7 @@ conversion fails, check **Settings → Tools**.
 3. Watch progress in **Downloads**; pause, resume, cancel or retry at any time.
 4. Completed files appear in **Library**. Double-click to open the file.
 
-For playlists/channels, Rapid Grab shows the entry list with checkboxes. Pick
+For playlists/channels, RapidGrab shows the entry list with checkboxes. Pick
 the entries and the mode (video best / capped resolution / audio).
 
 Data lives in `%LOCALAPPDATA%\RapidGrab`:
@@ -81,15 +81,15 @@ Data lives in `%LOCALAPPDATA%\RapidGrab`:
 
 ## Browser extension
 
-1. Start Rapid Grab and open **Settings → Browser integration**. Note the port
+1. Start RapidGrab and open **Settings → Browser integration**. Note the port
    and pairing token (press **Copy**).
 2. Open `chrome://extensions` (or `edge://extensions`), enable **Developer
    mode**, click **Load unpacked** and select the `extension` folder.
-3. Open the Rapid Grab toolbar popup, paste the port and token, press
+3. Open the RapidGrab toolbar popup, paste the port and token, press
    **Test connection**.
 
 The extension shows a green dot on pages with known video links and can send
-the link to Rapid Grab. **Choose format in Rapid Grab** opens the full format
+the link to RapidGrab. **Choose format in RapidGrab** opens the full format
 picker; **Quick video/audio** queues immediately using your defaults.
 Auto-send is opt-in. See `extension/README.md` for details.
 
@@ -167,14 +167,14 @@ included, and icons are generated into `rapidgrab\assets` and
 | --- | --- |
 | "Sign in to confirm you're not a bot" (YouTube) | Settings → **Sign-in cookies**: choose your browser or a `cookies.txt`, then retry. Close Chrome/Edge before reading their cookies. |
 | "FFmpeg is required..." | Install FFmpeg and point Settings → **Tools → FFmpeg** at `ffmpeg.exe`. |
-| YouTube says a JavaScript runtime is missing | Install [Deno](https://deno.com/) or Node.js; Rapid Grab auto-detects it. Packaged builds include Deno. You can also browse to the executable under Settings → **Tools → JavaScript runtime**. |
+| YouTube says a JavaScript runtime is missing | Install [Deno](https://deno.com/) or Node.js; RapidGrab auto-detects it. Packaged builds include Deno. You can also browse to the executable under Settings → **Tools → JavaScript runtime**. |
 | Merged video plays without sound | FFmpeg is missing or the site serves separate streams; check Tools. |
-| Extension cannot connect | Make sure Rapid Grab is running, the API shows green in the header, and the popup's port/token match Settings. |
+| Extension cannot connect | Make sure RapidGrab is running, the API shows green in the header, and the popup's port/token match Settings. |
 | API port in use | Change the port in Settings and press **Restart API**, then update the popup. |
-| A site stopped working | Update yt-dlp in **Settings → Tools** (sites change constantly). In a packaged build, install the newest Rapid Grab release instead. |
+| A site stopped working | Update yt-dlp in **Settings → Tools** (sites change constantly). In a packaged build, install the newest RapidGrab release instead. |
 | Something else is wrong | Run `RapidGrab.exe --diagnose`; the report (paths, FFmpeg, JavaScript runtime, extension folder, API port) is written to `%LOCALAPPDATA%\RapidGrab\diagnostics.txt`. |
 
 ## License
 
-MIT. Rapid Grab is a front-end around [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+MIT. RapidGrab is a front-end around [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 and [FFmpeg](https://ffmpeg.org/); their licenses apply to those components.

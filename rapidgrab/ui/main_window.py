@@ -5,8 +5,8 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from PySide6.QtCore import Qt, QThread, Signal
-from PySide6.QtGui import QAction, QIcon
+from PySide6.QtCore import QUrl, Qt, QThread, Signal
+from PySide6.QtGui import QAction, QDesktopServices, QIcon
 from PySide6.QtWidgets import (
     QApplication,
     QHBoxLayout,
@@ -162,7 +162,7 @@ class MainWindow(QMainWindow):
             return
         tray = QSystemTrayIcon(icon, self)
         menu = QMenu()
-        show_action = QAction("Open Rapid Grab", menu)
+        show_action = QAction(f"Open {APP_NAME}", menu)
         show_action.triggered.connect(self.show_window)
         menu.addAction(show_action)
         menu.addSeparator()
@@ -339,12 +339,22 @@ class MainWindow(QMainWindow):
         if self.settings.get("notify_on_finish"):
             title = str(job.get("title") or "Download complete")
             filepath = str(job.get("filepath") or "")
-            self.show_window()
-            QMessageBox.information(
-                self,
-                "Download complete",
-                f'"{title}"\n\nSaved to:\n{filepath}' if filepath else f'"{title}"',
-            )
+            box = QMessageBox(self)
+            box.setWindowTitle("Download complete")
+            box.setIcon(QMessageBox.Icon.Information)
+            box.setText(f'"{title}"')
+            box.setInformativeText(f"Saved to:\n{filepath}" if filepath else "")
+            open_btn = box.addButton("Open", QMessageBox.ButtonRole.ActionRole)
+            folder_btn = box.addButton("Show folder", QMessageBox.ButtonRole.ActionRole)
+            box.addButton("Close", QMessageBox.ButtonRole.RejectRole)
+            open_enabled = bool(filepath) and Path(filepath).is_file()
+            open_btn.setEnabled(open_enabled)
+            folder_btn.setEnabled(bool(filepath) and Path(filepath).parent.is_dir())
+            box.exec()
+            if box.clickedButton() is open_btn and open_enabled:
+                QDesktopServices.openUrl(QUrl.fromLocalFile(filepath))
+            elif box.clickedButton() is folder_btn:
+                self.manager.open_folder(str(job.get("id") or ""))
 
     # ------------------------------------------------------------------
     def _on_tab_changed(self, index: int) -> None:

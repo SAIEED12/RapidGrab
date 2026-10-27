@@ -1,1 +1,1 @@
-"""Core services for Rapid Grab."""
+"""Core services for RapidGrab."""

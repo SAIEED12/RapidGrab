@@ -5,11 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "rapidgrab"
 version = "0.1.0"
-description = "Rapid Grab - a fast, IDM-style video and audio downloader"
+description = "RapidGrab - a fast, IDM-style video and audio downloader"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Rapid Grab" }]
+authors = [{ name = "RapidGrab" }]
 dependencies = [
     "PySide6>=6.7",
     "yt-dlp>=2024.12.23",

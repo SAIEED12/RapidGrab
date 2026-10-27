@@ -1,4 +1,4 @@
-# Build Rapid Grab into a standalone Windows application.
+# Build RapidGrab into a standalone Windows application.
 # Usage:  .venv\Scripts\python.exe build\make_icons.py
 #         .venv\Scripts\pyinstaller.exe build\rapidgrab.spec --noconfirm
 # The result is dist\RapidGrab\RapidGrab.exe (distribute the whole folder).

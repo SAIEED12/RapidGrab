@@ -1,4 +1,4 @@
-"""Rapid Grab - application constants and shared helpers."""
+"""RapidGrab - application constants and shared helpers."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import os
 import sys
 from pathlib import Path
 
-APP_NAME = "Rapid Grab"
+APP_NAME = "RapidGrab"
 APP_SLUG = "RapidGrab"
 VERSION = "0.1.0"
 

@@ -1,6 +1,6 @@
-// Rapid Grab Companion - background service worker.
+// RapidGrab Companion - background service worker.
 // Detects video links, decorates the toolbar icon and forwards URLs to the
-// Rapid Grab desktop app over its localhost API.
+// RapidGrab desktop app over its localhost API.
 
 const KNOWN_PATTERNS = [
   /^https?:\/\/(www\.|m\.|music\.)?youtube\.com\/(watch|shorts|playlist)/i,
@@ -59,7 +59,7 @@ async function refreshBadge(tabId, url) {
     await chrome.action.setBadgeBackgroundColor({ tabId, color: supported ? "#3ddc84" : "#000000" });
     await chrome.action.setTitle({
       tabId,
-      title: supported ? "Rapid Grab - video detected" : "Rapid Grab",
+      title: supported ? "RapidGrab - video detected" : "RapidGrab",
     });
   } catch (error) {
     // The tab may have closed while we were updating it.
@@ -79,7 +79,7 @@ async function maybeAutoSend(tabId, url, title) {
   try {
     await api("/api/detect", { url, title });
   } catch (error) {
-    // Rapid Grab is probably not running; nothing else to do here.
+    // RapidGrab is probably not running; nothing else to do here.
   }
 }
 

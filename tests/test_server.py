@@ -53,7 +53,7 @@ def test_api_ping_and_authenticated_actions(tmp_path):
     try:
         status, payload = request(port, "/api/ping")
         assert status == 200
-        assert payload["app"] == "Rapid Grab"
+        assert payload["app"] == "RapidGrab"
 
         # Unauthenticated detect is rejected.
         status, payload = request(
@@ -148,6 +148,6 @@ def test_rejected_request_keeps_connection_usable(tmp_path):
             stream.flush()
             status, _, payload = read_response(stream)
             assert status == 200
-            assert json.loads(payload)["app"] == "Rapid Grab"
+            assert json.loads(payload)["app"] == "RapidGrab"
     finally:
         server.stop()

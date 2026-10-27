@@ -166,7 +166,7 @@ def update_ytdlp() -> tuple[bool, str]:
     if proc.returncode != 0:
         tail = (proc.stderr or proc.stdout or "").strip().splitlines()[-3:]
         return False, "\n".join(tail) or "pip failed"
-    return True, "yt-dlp updated. Restart Rapid Grab to use the new version."
+    return True, "yt-dlp updated. Restart RapidGrab to use the new version."
 
 
 # ---------------------------------------------------------------------------

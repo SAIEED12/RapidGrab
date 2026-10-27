@@ -1,4 +1,4 @@
-// Rapid Grab Companion - popup logic.
+// RapidGrab Companion - popup logic.
 
 const $ = (id) => document.getElementById(id);
 const DEFAULT_CONFIG = { port: 47653, token: "", autoSend: false };
@@ -49,12 +49,12 @@ function setConnection(ok, text) {
 
 function describeFailure(result) {
   if (result?.status === 401) {
-    return "Token rejected. Copy it again from Rapid Grab → Settings.";
+    return "Token rejected. Copy it again from RapidGrab → Settings.";
   }
   if (result?.status === 400) {
-    return "Rapid Grab did not accept that link.";
+    return "RapidGrab did not accept that link.";
   }
-  return "Can't reach Rapid Grab. Is the app running?";
+  return "Can't reach RapidGrab. Is the app running?";
 }
 
 async function testConnection({ silent = false } = {}) {
@@ -63,7 +63,7 @@ async function testConnection({ silent = false } = {}) {
   if (result.ok) {
     const version = result.data?.version ? ` v${result.data.version}` : "";
     setConnection(true, `Connected${version}`);
-    if (!silent) setMessage("Connected to Rapid Grab.", "ok");
+    if (!silent) setMessage("Connected to RapidGrab.", "ok");
     return true;
   }
   setConnection(false, "Offline");
@@ -109,7 +109,7 @@ async function sendUrl(type, extra = {}) {
     setMessage("This page does not have a downloadable link.", "error");
     return;
   }
-  setMessage("Sending to Rapid Grab...");
+  setMessage("Sending to RapidGrab...");
   const result = await send({
     type,
     url: pageInfo.url,
@@ -119,8 +119,8 @@ async function sendUrl(type, extra = {}) {
   if (result.ok) {
     setMessage(
       type === "detect"
-        ? "Sent! Choose a format in Rapid Grab."
-        : "Added to the Rapid Grab download queue.",
+        ? "Sent! Choose a format in RapidGrab."
+        : "Added to the RapidGrab download queue.",
       "ok"
     );
   } else {
@@ -146,7 +146,7 @@ async function init() {
     await saveConfig();
     setMessage(
       $("autoSend").checked
-        ? "Auto-send is on. Detected videos go straight to Rapid Grab."
+        ? "Auto-send is on. Detected videos go straight to RapidGrab."
         : "Auto-send is off.",
       "ok"
     );

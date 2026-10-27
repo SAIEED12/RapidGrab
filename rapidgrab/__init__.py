@@ -1,4 +1,4 @@
-"""Rapid Grab application package."""
+"""RapidGrab application package."""
 
 from .constants import APP_NAME, VERSION
 

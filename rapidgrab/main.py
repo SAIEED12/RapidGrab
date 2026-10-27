@@ -1,4 +1,4 @@
-"""Rapid Grab application entry point."""
+"""RapidGrab application entry point."""
 
 from __future__ import annotations
 

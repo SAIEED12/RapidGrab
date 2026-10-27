@@ -1,5 +1,5 @@
 # Download a Deno binary so packaged builds have a JavaScript runtime for
-# YouTube (yt-dlp's EJS challenge solver). Optional: skip it and Rapid Grab
+# YouTube (yt-dlp's EJS challenge solver). Optional: skip it and RapidGrab
 # will use Deno/Node/Bun installed on the machine if present.
 #
 # Usage: powershell -ExecutionPolicy Bypass -File build\fetch_deno.ps1

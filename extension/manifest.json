@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Rapid Grab Companion",
+  "name": "RapidGrab Companion",
   "version": "0.1.0",
-  "description": "Send videos from YouTube, Facebook, X and other sites to the Rapid Grab desktop app.",
+  "description": "Send videos from YouTube, Facebook, X and other sites to the RapidGrab desktop app.",
   "permissions": ["storage", "tabs", "activeTab"],
   "host_permissions": ["http://127.0.0.1/*", "http://localhost/*"],
   "background": {
@@ -10,7 +10,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Rapid Grab",
+    "default_title": "RapidGrab",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",

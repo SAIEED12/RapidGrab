@@ -1,4 +1,4 @@
-"""Localhost HTTP API used by the Rapid Grab browser extension."""
+"""Localhost HTTP API used by the RapidGrab browser extension."""
 
 from __future__ import annotations
 
@@ -149,7 +149,7 @@ class _Handler(BaseHTTPRequestHandler):
             return True
         # Drain first so the connection can be reused after the refusal.
         self._drain_body()
-        self._reject(401, "Invalid or missing Rapid Grab token.")
+        self._reject(401, "Invalid or missing RapidGrab token.")
         return False
 
     # -- verbs ----------------------------------------------------------

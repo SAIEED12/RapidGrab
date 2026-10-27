@@ -115,7 +115,7 @@ class SettingsPage(QWidget):
         behavior = QFormLayout(behavior_box)
         behavior.setContentsMargins(14, 18, 14, 12)
         behavior.setSpacing(10)
-        self.tray_check = QCheckBox("Keep Rapid Grab running in the system tray when closed")
+        self.tray_check = QCheckBox("Keep RapidGrab running in the system tray when closed")
         behavior.addRow("", self.tray_check)
         self.notify_check = QCheckBox("Show a notification when a download finishes")
         behavior.addRow("", self.notify_check)
@@ -205,7 +205,7 @@ class SettingsPage(QWidget):
 
         help_label = muted(
             "Load the extension once: open chrome://extensions, enable Developer mode, "
-            "click 'Load unpacked' and pick the extension folder. Then open the Rapid Grab "
+            "click 'Load unpacked' and pick the extension folder. Then open the RapidGrab "
             "toolbar popup, enter the port and token shown here, and press Test connection."
         )
         help_label.setWordWrap(True)
